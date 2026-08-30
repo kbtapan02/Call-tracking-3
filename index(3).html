@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lineboard — Call Tracking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#11161A;
+    --panel:#171E23;
+    --panel-2:#1D262C;
+    --line:#2A343B;
+    --paper:#EDEAE3;
+    --paper-dim:#9BA6AC;
+    --amber:#FFB454;
+    --teal:#4FA39C;
+    --red:#D2665A;
+    --slate:#5C6770;
+    --radius:10px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    min-height:100vh;
+    padding:32px 20px 80px;
+  }
+  .wrap{max-width:1080px; margin:0 auto;}
+
+  /* Header / switchboard strip */
+  header{
+    display:flex; align-items:flex-end; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:20px; margin-bottom:24px;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .brand .dot{
+    width:12px; height:12px; border-radius:50%;
+    background:var(--teal);
+    box-shadow:0 0 0 3px rgba(79,163,156,0.18);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1;} 50%{opacity:0.35;}
+  }
+  h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:26px; font-weight:700; letter-spacing:-0.02em;
+  }
+  .tagline{color:var(--paper-dim); font-size:13px; margin-top:2px;}
+  .clock{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px; color:var(--paper-dim);
+    text-align:right;
+  }
+  .clock span{display:block; color:var(--amber); font-size:15px; font-weight:600;}
+
+  /* Stats row */
+  .stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(150px,1fr));
+    gap:12px;
+    margin-bottom:28px;
+  }
+  .stat{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    position:relative;
+    overflow:hidden;
+  }
+  .stat::before{
+    content:'';
+    position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--stat-color, var(--teal));
+  }
+  .stat .label{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--paper-dim); font-weight:600;
+  }
+  .stat .value{
+    font-family:'JetBrains Mono', monospace;
+    font-size:28px; font-weight:600; margin-top:6px;
+    color:var(--paper);
+  }
+
+  /* Layout: log + panel */
+  .grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:20px;
+  }
+  @media (max-width:760px){ .grid{grid-template-columns:1fr;} }
+
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:20px;
+  }
+  .card h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px; font-weight:600;
+    margin-bottom:16px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .card h2 .count{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; color:var(--paper-dim); font-weight:400;
+  }
+
+  /* Call log */
+  .log{list-style:none; display:flex; flex-direction:column; gap:2px;}
+  .log-row{
+    display:grid;
+    grid-template-columns:10px 1fr auto auto;
+    align-items:center;
+    gap:12px;
+    padding:11px 8px;
+    border-radius:6px;
+    border-bottom:1px solid var(--line);
+    transition:background 0.15s ease;
+  }
+  .log-row:last-child{border-bottom:none;}
+  .log-row:hover{background:var(--panel-2);}
+  .status-dot{width:8px; height:8px; border-radius:50%;}
+  .status-dot.connected{background:var(--teal);}
+  .status-dot.missed{background:var(--red);}
+  .status-dot.voicemail{background:var(--amber);}
+  .log-main .name{font-size:14px; font-weight:500;}
+  .log-main .meta{font-size:11px; color:var(--paper-dim); margin-top:2px; font-family:'JetBrains Mono', monospace;}
+  .log-duration{
+    font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--paper-dim);
+    text-align:right; min-width:52px;
+  }
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:10px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:3px 8px; border-radius:20px;
+    border:1px solid var(--line);
+  }
+  .tag.connected{color:var(--teal); border-color:rgba(79,163,156,0.4);}
+  .tag.missed{color:var(--red); border-color:rgba(210,102,90,0.4);}
+  .tag.voicemail{color:var(--amber); border-color:rgba(255,180,84,0.4);}
+
+  .empty{color:var(--paper-dim); font-size:13px; padding:20px 0; text-align:center;}
+
+  /* Form */
+  form{display:flex; flex-direction:column; gap:12px;}
+  label{
+    font-size:11px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--paper-dim); font-weight:600; display:block; margin-bottom:6px;
+  }
+  input, select{
+    width:100%;
+    background:var(--panel-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:10px 12px;
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    font-size:14px;
+  }
+  input:focus, select:focus{outline:2px solid var(--amber); outline-offset:1px;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  button{
+    margin-top:6px;
+    background:var(--amber);
+    color:#1A1204;
+    border:none;
+    border-radius:6px;
+    padding:12px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    cursor:pointer;
+    transition:transform 0.1s ease, filter 0.15s ease;
+  }
+  button:hover{filter:brightness(1.08);}
+  button:active{transform:scale(0.98);}
+  button:focus-visible{outline:2px solid var(--paper); outline-offset:2px;}
+
+  .filters{display:flex; gap:6px; margin-bottom:14px; flex-wrap:wrap;}
+  .filter-btn{
+    background:transparent;
+    border:1px solid var(--line);
+    color:var(--paper-dim);
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-family:'Inter', sans-serif;
+    cursor:pointer;
+    margin:0;
+  }
+  .filter-btn.active{
+    border-color:var(--amber);
+    color:var(--amber);
+    background:rgba(255,180,84,0.08);
+  }
+
+  footer{
+    text-align:center; color:var(--slate); font-size:12px;
+    margin-top:40px; font-family:'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <h1>Lineboard</h1>
+        <div class="tagline">Call tracking, line by line</div>
+      </div>
+    </div>
+    <div class="clock">Today <span id="today-date">—</span></div>
+  </header>
+
+  <div class="stats">
+    <div class="stat" style="--stat-color:var(--teal)">
+      <div class="label">Connected</div>
+      <div class="value" id="stat-connected">0</div>
+    </div>
+    <div class="stat" style="--stat-color:var(--red)">
+      <div class="label">Missed</div>
+      <div class="value" id="stat-missed">0</div>
+    </div>
+    <div class="stat" style="--stat-color:var(--amber)">
+      <div class="label">Voicemail</div>
+      <div class="value" id="stat-voicemail">0</div>
+    </div>
+    <div class="stat" style="--stat-color:var(--paper-dim)">
+      <div class="label">Total talk time</div>
+      <div class="value" id="stat-duration">0m</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <h2>Call log <span class="count" id="log-count">0 calls</span></h2>
+      <div class="filters" id="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="connected">Connected</button>
+        <button class="filter-btn" data-filter="missed">Missed</button>
+        <button class="filter-btn" data-filter="voicemail">Voicemail</button>
+      </div>
+      <ul class="log" id="log-list"></ul>
+    </div>
+
+    <div class="card">
+      <h2>Log a call</h2>
+      <form id="call-form">
+        <div>
+          <label for="f-name">Contact</label>
+          <input id="f-name" type="text" placeholder="e.g. Priya Shah" required />
+        </div>
+        <div class="row2">
+          <div>
+            <label for="f-status">Outcome</label>
+            <select id="f-status">
+              <option value="connected">Connected</option>
+              <option value="missed">Missed</option>
+              <option value="voicemail">Voicemail</option>
+            </select>
+          </div>
+          <div>
+            <label for="f-duration">Duration (min)</label>
+            <input id="f-duration" type="number" min="0" step="1" placeholder="0" />
+          </div>
+        </div>
+        <div>
+          <label for="f-note">Note</label>
+          <input id="f-note" type="text" placeholder="Reason for call, follow-up, etc." />
+        </div>
+        <button type="submit">Log call</button>
+      </form>
+    </div>
+  </div>
+
+  <footer>Data stays in this browser tab only · nothing is sent anywhere</footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

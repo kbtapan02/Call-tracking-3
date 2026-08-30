@@ -1,0 +1,84 @@
+{
+  "calls": [
+    {
+      "id": 1,
+      "name": "Priya Shah",
+      "phone": "+1-415-555-0142",
+      "status": "connected",
+      "duration": 12,
+      "note": "Renewal discussion",
+      "date": "2026-08-24",
+      "time": "09:14 AM"
+    },
+    {
+      "id": 2,
+      "name": "Marcus Lee",
+      "phone": "+1-312-555-0198",
+      "status": "missed",
+      "duration": 0,
+      "note": "No answer",
+      "date": "2026-08-24",
+      "time": "09:41 AM"
+    },
+    {
+      "id": 3,
+      "name": "Dana Whitfield",
+      "phone": "+1-206-555-0121",
+      "status": "voicemail",
+      "duration": 0,
+      "note": "Left pricing follow-up",
+      "date": "2026-08-24",
+      "time": "10:02 AM"
+    },
+    {
+      "id": 4,
+      "name": "Omar Haddad",
+      "phone": "+1-646-555-0187",
+      "status": "connected",
+      "duration": 23,
+      "note": "Onboarding call",
+      "date": "2026-08-24",
+      "time": "10:35 AM"
+    },
+    {
+      "id": 5,
+      "name": "Yui Tanaka",
+      "phone": "+1-503-555-0163",
+      "status": "connected",
+      "duration": 6,
+      "note": "Quick check-in",
+      "date": "2026-08-24",
+      "time": "11:10 AM"
+    },
+    {
+      "id": 6,
+      "name": "Carlos Mendez",
+      "phone": "+1-713-555-0134",
+      "status": "missed",
+      "duration": 0,
+      "note": "Callback requested",
+      "date": "2026-08-25",
+      "time": "08:52 AM"
+    },
+    {
+      "id": 7,
+      "name": "Fatima Al-Sayed",
+      "phone": "+1-602-555-0175",
+      "status": "connected",
+      "duration": 18,
+      "note": "Contract questions",
+      "date": "2026-08-25",
+      "time": "09:20 AM"
+    },
+    {
+      "id": 8,
+      "name": "Liam O'Brien",
+      "phone": "+1-617-555-0109",
+      "status": "voicemail",
+      "duration": 0,
+      "note": "Left demo invite",
+      "date": "2026-08-25",
+      "time": "11:47 AM"
+    }
+  ]
+}
