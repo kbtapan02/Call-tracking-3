@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lineboard — Call Tracking Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<header class="app-header">
+  <div class="header-inner">
+    <a class="wordmark" href="#main-content">
+      <span class="wordmark-glyph" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M4 12c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#2A5EF5" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="12" cy="16" r="2.5" fill="#2A5EF5"/>
+        </svg>
+      </span>
+      Lineboard
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <ul>
+        <li><a href="#main-content" aria-current="page">Dashboard</a></li>
+        <li><a href="#calls-table-section">Calls</a></li>
+        <li><a href="#">Reports</a></li>
+        <li><a href="#">Settings</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main-content">
+
+  <div class="page-heading">
+    <div>
+      <h1>Call activity</h1>
+      <p>Every call your team logged, in one place.</p>
+    </div>
+  </div>
+
+  <ul class="summary-grid" aria-label="Call summary">
+    <li class="summary-card">
+      <p class="label">Total calls</p>
+      <p class="value" id="stat-total">0</p>
+    </li>
+    <li class="summary-card">
+      <p class="label">Incoming calls</p>
+      <p class="value" id="stat-incoming">0</p>
+    </li>
+    <li class="summary-card">
+      <p class="label">Outgoing calls</p>
+      <p class="value" id="stat-outgoing">0</p>
+    </li>
+    <li class="summary-card accent-good">
+      <p class="label">Answered calls</p>
+      <p class="value" id="stat-answered">0</p>
+    </li>
+    <li class="summary-card accent-bad">
+      <p class="label">Missed calls</p>
+      <p class="value" id="stat-missed">0</p>
+    </li>
+    <li class="summary-card accent-line">
+      <p class="label">Total call duration</p>
+      <p class="value" id="stat-duration">0m</p>
+    </li>
+  </ul>
+
+  <section class="toolbar" aria-label="Search and filter calls">
+    <form id="filter-form">
+      <div class="field">
+        <label for="search-input">Search calls</label>
+        <input type="search" id="search-input" name="search" placeholder="Search by name or phone number">
+      </div>
+      <div class="field">
+        <label for="direction-filter">Direction</label>
+        <select id="direction-filter" name="direction">
+          <option value="all">All directions</option>
+          <option value="incoming">Incoming</option>
+          <option value="outgoing">Outgoing</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="outcome-filter">Outcome</label>
+        <select id="outcome-filter" name="outcome">
+          <option value="all">All outcomes</option>
+          <option value="answered">Answered</option>
+          <option value="missed">Missed</option>
+          <option value="voicemail">Voicemail</option>
+          <option value="declined">Declined</option>
+        </select>
+      </div>
+      <button type="reset" class="btn-reset" id="reset-btn">Clear filters</button>
+    </form>
+  </section>
+
+  <p class="result-count" id="result-count" role="status" aria-live="polite">Showing all calls</p>
+
+  <section id="calls-table-section" aria-label="Call records">
+    <div class="table-wrap" id="table-wrap">
+      <table class="calls-table">
+        <caption>Call records, most recent first. Scroll horizontally on small screens to see all columns.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Caller</th>
+            <th scope="col">Phone number</th>
+            <th scope="col">Date &amp; time</th>
+            <th scope="col">Duration</th>
+            <th scope="col">Direction</th>
+            <th scope="col">Outcome</th>
+          </tr>
+        </thead>
+        <tbody id="calls-tbody">
+          <!-- Rows injected by JavaScript -->
+        </tbody>
+      </table>
+      <div class="empty-state" id="empty-state">
+        <h2>No calls match these filters</h2>
+        <p>Try a different search term, or clear filters to see every call again.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="app-footer">
+  <p>Lineboard — local call tracking dashboard. Data shown is stored in this page only.</p>
+</footer>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

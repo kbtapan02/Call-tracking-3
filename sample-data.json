@@ -1,84 +1,152 @@
-{
-  "calls": [
-    {
-      "id": 1,
-      "name": "Priya Shah",
-      "phone": "+1-415-555-0142",
-      "status": "connected",
-      "duration": 12,
-      "note": "Renewal discussion",
-      "date": "2026-08-24",
-      "time": "09:14 AM"
-    },
-    {
-      "id": 2,
-      "name": "Marcus Lee",
-      "phone": "+1-312-555-0198",
-      "status": "missed",
-      "duration": 0,
-      "note": "No answer",
-      "date": "2026-08-24",
-      "time": "09:41 AM"
-    },
-    {
-      "id": 3,
-      "name": "Dana Whitfield",
-      "phone": "+1-206-555-0121",
-      "status": "voicemail",
-      "duration": 0,
-      "note": "Left pricing follow-up",
-      "date": "2026-08-24",
-      "time": "10:02 AM"
-    },
-    {
-      "id": 4,
-      "name": "Omar Haddad",
-      "phone": "+1-646-555-0187",
-      "status": "connected",
-      "duration": 23,
-      "note": "Onboarding call",
-      "date": "2026-08-24",
-      "time": "10:35 AM"
-    },
-    {
-      "id": 5,
-      "name": "Yui Tanaka",
-      "phone": "+1-503-555-0163",
-      "status": "connected",
-      "duration": 6,
-      "note": "Quick check-in",
-      "date": "2026-08-24",
-      "time": "11:10 AM"
-    },
-    {
-      "id": 6,
-      "name": "Carlos Mendez",
-      "phone": "+1-713-555-0134",
-      "status": "missed",
-      "duration": 0,
-      "note": "Callback requested",
-      "date": "2026-08-25",
-      "time": "08:52 AM"
-    },
-    {
-      "id": 7,
-      "name": "Fatima Al-Sayed",
-      "phone": "+1-602-555-0175",
-      "status": "connected",
-      "duration": 18,
-      "note": "Contract questions",
-      "date": "2026-08-25",
-      "time": "09:20 AM"
-    },
-    {
-      "id": 8,
-      "name": "Liam O'Brien",
-      "phone": "+1-617-555-0109",
-      "status": "voicemail",
-      "duration": 0,
-      "note": "Left demo invite",
-      "date": "2026-08-25",
-      "time": "11:47 AM"
-    }
-  ]
-}
+[
+  {
+    "id": "call-001",
+    "callerName": "Amelia Chen",
+    "phoneNumber": "+1 415-555-0132",
+    "date": "2026-08-31",
+    "time": "09:12",
+    "duration": 312,
+    "direction": "incoming",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-002",
+    "callerName": "Rahim Uddin",
+    "phoneNumber": "+880 1712-345678",
+    "date": "2026-08-31",
+    "time": "08:47",
+    "duration": 0,
+    "direction": "incoming",
+    "outcome": "missed"
+  },
+  {
+    "id": "call-003",
+    "callerName": "Priya Sharma",
+    "phoneNumber": "+91 98200-11223",
+    "date": "2026-08-30",
+    "time": "17:30",
+    "duration": 184,
+    "direction": "outgoing",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-004",
+    "callerName": "Marco Rossi",
+    "phoneNumber": "+39 340-555-9821",
+    "date": "2026-08-30",
+    "time": "15:05",
+    "duration": 0,
+    "direction": "outgoing",
+    "outcome": "declined"
+  },
+  {
+    "id": "call-005",
+    "callerName": "Fatima Al-Sayed",
+    "phoneNumber": "+20 100-555-3344",
+    "date": "2026-08-30",
+    "time": "11:22",
+    "duration": 96,
+    "direction": "incoming",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-006",
+    "callerName": "Diego Fernandes",
+    "phoneNumber": "+55 21-9555-0187",
+    "date": "2026-08-29",
+    "time": "19:40",
+    "duration": 0,
+    "direction": "incoming",
+    "outcome": "voicemail"
+  },
+  {
+    "id": "call-007",
+    "callerName": "Somchai Boon",
+    "phoneNumber": "+66 89-555-4471",
+    "date": "2026-08-29",
+    "time": "14:18",
+    "duration": 421,
+    "direction": "outgoing",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-008",
+    "callerName": "Grace Okafor",
+    "phoneNumber": "+234 803-555-6612",
+    "date": "2026-08-29",
+    "time": "10:03",
+    "duration": 0,
+    "direction": "incoming",
+    "outcome": "missed"
+  },
+  {
+    "id": "call-009",
+    "callerName": "Liam O'Brien",
+    "phoneNumber": "+353 87-555-2290",
+    "date": "2026-08-28",
+    "time": "16:55",
+    "duration": 205,
+    "direction": "incoming",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-010",
+    "callerName": "Noor Haq",
+    "phoneNumber": "+92 300-555-7789",
+    "date": "2026-08-28",
+    "time": "13:11",
+    "duration": 0,
+    "direction": "outgoing",
+    "outcome": "voicemail"
+  },
+  {
+    "id": "call-011",
+    "callerName": "Elena Petrova",
+    "phoneNumber": "+7 916-555-3320",
+    "date": "2026-08-27",
+    "time": "20:02",
+    "duration": 63,
+    "direction": "outgoing",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-012",
+    "callerName": "Kenji Watanabe",
+    "phoneNumber": "+81 90-5555-1187",
+    "date": "2026-08-27",
+    "time": "09:48",
+    "duration": 0,
+    "direction": "incoming",
+    "outcome": "missed"
+  },
+  {
+    "id": "call-013",
+    "callerName": "Isabella Silva",
+    "phoneNumber": "+351 91-555-4402",
+    "date": "2026-08-26",
+    "time": "12:35",
+    "duration": 148,
+    "direction": "incoming",
+    "outcome": "answered"
+  },
+  {
+    "id": "call-014",
+    "callerName": "Tunde Adebayo",
+    "phoneNumber": "+234 802-555-9910",
+    "date": "2026-08-26",
+    "time": "08:59",
+    "duration": 0,
+    "direction": "outgoing",
+    "outcome": "declined"
+  },
+  {
+    "id": "call-015",
+    "callerName": "Mai Tran",
+    "phoneNumber": "+84 90-555-6673",
+    "date": "2026-08-25",
+    "time": "18:21",
+    "duration": 267,
+    "direction": "incoming",
+    "outcome": "answered"
+  }
+]
